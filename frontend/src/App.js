@@ -48,7 +48,7 @@ function App() {
       const signer = await provider.getSigner();
       
       const contract = new ethers.Contract(
-        '0x42dB46bD5EaF31e0E3DD2acd3324978EdD14965c',
+        '0xAe599d6C9C53599E70342E7293b1ce8359Eb8a68',
         [
           {
               "inputs": [],
