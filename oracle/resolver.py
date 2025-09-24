@@ -10,7 +10,7 @@ load_dotenv()
 w3 = Web3(Web3.HTTPProvider(sapphire.NETWORKS["sapphire-testnet"]))
 w3 = sapphire.wrap(w3)
 
-private_key = os.getenv("PRIVATE_KEY")  
+private_key = os.getenv("ORACLE_PRIVATE_KEY")  
 account = w3.eth.account.from_key(private_key)
 # w3.middleware_onion.add(
 #     construct_sign_and_send_raw_middleware(account),
@@ -20,7 +20,7 @@ account = w3.eth.account.from_key(private_key)
 w3.eth.default_account = account.address
 
 # Contract configuration
-CONTRACT_ADDRESS = "0x42dB46bD5EaF31e0E3DD2acd3324978EdD14965c"
+CONTRACT_ADDRESS = "0xAe599d6C9C53599E70342E7293b1ce8359Eb8a68"
 CONTRACT_ABI = json.loads("""[
     {
         "inputs": [],
@@ -83,12 +83,48 @@ def get_unresolved_events():
 def get_event_id_from_contract():
     # Get next unresolved bet ID
     try:
-        return contract.functions.nextUnresolvedBetId().call()
+        result = contract.functions.nextUnresolvedBetId().call()
+        print(f"Successfully fetched unresolved ID: {result}")
+        return result
     except Exception as e:
         print(f"Error fetching unresolved ID: {e}")
-        return None
+        return 0  # Return 0 instead of None to avoid type errors
+
+def test_connection():
+    """Test if we can connect to the contract"""
+    try:
+        # Test basic connection
+        chain_id = w3.eth.chain_id
+        print(f"Connected to chain ID: {chain_id}")
+        
+        # Test contract connection
+        contract_address = contract.address
+        print(f"Contract address: {contract_address}")
+        
+        # Test if contract is deployed
+        code = w3.eth.get_code(contract_address)
+        if code == b'':
+            print("ERROR: No contract code found at this address!")
+            return False
+        else:
+            print("Contract code found - contract is deployed")
+            return True
+            
+    except Exception as e:
+        print(f"Connection test failed: {e}")
+        return False
 
 def main():
+    print("=== Oracle Service Starting ===")
+    
+    # Test connection first
+    if not test_connection():
+        print("Cannot connect to contract. Please check:")
+        print("1. Contract is deployed")
+        print("2. Network is correct")
+        print("3. Contract address is correct")
+        return
+    
     # Get event ID from contract
     event_id = get_event_id_from_contract()  
     print(f"Next unresolved bet ID: {event_id}")
