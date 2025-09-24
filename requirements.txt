@@ -1,0 +1,3 @@
+oasis-sapphire-py
+web3 
+python-dotenv
