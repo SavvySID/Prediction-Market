@@ -1,70 +1,280 @@
-# Getting Started with Create React App
+# 🎯 PredaMark Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application for the PredaMark prediction market platform, featuring real-time trading, interactive charts, and Oasis Sapphire integration.
 
-## Available Scripts
+## 🚀 Features
 
-In the project directory, you can run:
+### **Core Functionality**
+- **Real-time Trading**: Live price updates and market dynamics
+- **Interactive Charts**: Beautiful price charts with Recharts
+- **Wallet Integration**: MetaMask with Oasis Sapphire testnet
+- **Responsive Design**: Works on desktop and mobile
+- **State Management**: React Context for global state
+- **Routing**: React Router for navigation
 
-### `npm start`
+### **Pages & Components**
+- **HomePage**: Market browsing and category selection
+- **PredictionPage**: Individual market trading interface
+- **DashboardPage**: User portfolio and betting history
+- **LeaderboardPage**: Top trader rankings
+- **AboutPage**: Platform information
+- **Layout**: Header, navigation, and wallet connection
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Technology Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **React 18.2.0**: Modern React with hooks
+- **React Router 6**: Client-side routing
+- **Ethers.js**: Ethereum interaction
+- **Recharts**: Interactive charting
+- **Oasis Sapphire**: Confidential computing integration
+- **CSS3**: Modern styling with gradients
 
-### `npm test`
+## 📦 Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Install dependencies
+npm install
 
-### `npm run build`
+# Start development server
+npm start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Build for production
+npm run build
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Run tests
+npm test
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🎮 Demo Data
 
-### `npm run eject`
+The application includes comprehensive demo data:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### **Markets**
+- 8 different prediction markets
+- Categories: Politics, Crypto, Sports, Tech, Economy
+- Real-time price updates every 10 seconds
+- Interactive charts with historical data
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **User Features**
+- Mock wallet connection
+- Betting simulation
+- Portfolio tracking
+- Achievement system
+- Leaderboard rankings
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## 🔧 Configuration
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### **Environment Variables**
+```bash
+# .env.local
+REACT_APP_CONTRACT_ADDRESS=0x...
+REACT_APP_RPC_URL=https://testnet.sapphire.oasis.dev
+REACT_APP_CHAIN_ID=23295
+```
 
-## Learn More
+### **MetaMask Setup**
+The app automatically configures MetaMask for Oasis Sapphire testnet:
+- Network Name: Sapphire Testnet
+- RPC URL: https://testnet.sapphire.oasis.dev
+- Chain ID: 23295
+- Currency Symbol: TEST
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 📁 Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+src/
+├── components/           # Reusable UI components
+│   ├── Layout.js        # Main layout component
+│   ├── Layout.css       # Layout styles
+│   ├── PriceChart.js    # Interactive price chart
+│   └── PriceChart.css   # Chart styles
+├── pages/               # Page components
+│   ├── HomePage.js      # Home page with market browsing
+│   ├── HomePage.css     # Home page styles
+│   ├── PredictionPage.js # Individual market page
+│   ├── PredictionPage.css # Market page styles
+│   ├── DashboardPage.js  # User dashboard
+│   ├── DashboardPage.css # Dashboard styles
+│   ├── LeaderboardPage.js # Leaderboard
+│   ├── LeaderboardPage.css # Leaderboard styles
+│   ├── AboutPage.js     # About page
+│   └── AboutPage.css    # About page styles
+├── context/             # React context
+│   └── DemoContext.js   # Global state management
+├── data/                # Demo data
+│   └── demoData.js      # Mock data for demo
+├── App.js               # Main application component
+├── App.css              # Global styles
+└── index.js             # Application entry point
+```
 
-### Code Splitting
+## 🎨 Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### **Design System**
+- **Color Scheme**: Oasis blue theme with gradients
+- **Typography**: Modern, clean fonts
+- **Layout**: Responsive grid system
+- **Components**: Consistent button and card styles
+- **Animations**: Smooth transitions and hover effects
 
-### Analyzing the Bundle Size
+### **CSS Architecture**
+- **Component-scoped styles**: Each component has its own CSS file
+- **Global styles**: App.css for common styles
+- **Responsive design**: Mobile-first approach
+- **CSS Variables**: Consistent color and spacing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🔌 API Integration
 
-### Making a Progressive Web App
+### **Wallet Connection**
+```javascript
+// Connect to MetaMask
+const connectWallet = async () => {
+  const accounts = await window.ethereum.request({ 
+    method: 'eth_requestAccounts' 
+  });
+  // Handle connection
+};
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### **Contract Interaction**
+```javascript
+// Place a bet
+const placeBet = async (marketId, outcome, amount) => {
+  const contract = new ethers.Contract(address, abi, signer);
+  const tx = await contract.placeBet(outcome, { value: amount });
+  await tx.wait();
+};
+```
 
-### Advanced Configuration
+## 📊 State Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### **DemoContext**
+Global state management using React Context:
 
-### Deployment
+```javascript
+const {
+  markets,           // Available markets
+  user,             // User profile
+  walletConnected,  // Wallet status
+  placeBet,         // Betting function
+  getMarketById,    // Market lookup
+  // ... more state and functions
+} = useDemo();
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### **State Updates**
+- Real-time price updates every 10 seconds
+- Bet placement updates market prices
+- Wallet connection status
+- Notification system
 
-### `npm run build` fails to minify
+## 🎯 Key Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### **Real-time Updates**
+- Prices update automatically
+- Market volume changes
+- User portfolio updates
+- Notification system
+
+### **Interactive Charts**
+- Hover effects on data points
+- Timeframe selection
+- Price change indicators
+- Responsive design
+
+### **Wallet Integration**
+- MetaMask connection
+- Network switching
+- Transaction handling
+- Error management
+
+## 🧪 Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+## 🚀 Deployment
+
+### **Development**
+```bash
+npm start
+# Opens http://localhost:3000
+```
+
+### **Production Build**
+```bash
+npm run build
+# Creates optimized build in build/
+```
+
+### **Deploy to Netlify**
+```bash
+# Build and deploy
+npm run build
+# Upload build/ folder to Netlify
+```
+
+## 🔧 Customization
+
+### **Adding New Markets**
+1. Update `demoData.js` with new market data
+2. Add chart data for the new market
+3. Update category counts if needed
+
+### **Styling Changes**
+1. Modify component CSS files
+2. Update global styles in `App.css`
+3. Adjust color scheme in CSS variables
+
+### **New Features**
+1. Create new components in `components/`
+2. Add new pages in `pages/`
+3. Update routing in `App.js`
+4. Extend context in `DemoContext.js`
+
+## 📱 Mobile Support
+
+- **Responsive Design**: Works on all screen sizes
+- **Touch Optimized**: Mobile-friendly interactions
+- **Performance**: Optimized for mobile devices
+- **PWA Ready**: Can be converted to Progressive Web App
+
+## 🔒 Security
+
+- **Wallet Security**: MetaMask integration
+- **Network Validation**: Oasis Sapphire testnet
+- **Input Validation**: Form validation and sanitization
+- **Error Handling**: Graceful error management
+
+## 🎉 Demo Guide
+
+1. **Start the app**: `npm start`
+2. **Connect wallet**: Click "Connect Wallet"
+3. **Browse markets**: Explore different categories
+4. **Place bets**: Try the betting functionality
+5. **Check dashboard**: View your portfolio
+6. **Compare rankings**: See the leaderboard
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
+
+---
+
+**Built with ❤️ for PredaMark**
