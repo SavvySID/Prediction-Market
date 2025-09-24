@@ -1,0 +1,105 @@
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #e0e0e0;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 1rem;
+  background: #1a1a1a;
+  border-radius: 12px;
+}
+
+.connect-btn, .place-bet-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.connect-btn:hover, .place-bet-btn:hover {
+  background: #45a049;
+}
+
+.wallet-info {
+  background: #2d2d2d;
+  padding: 8px 16px;
+  border-radius: 8px;
+}
+
+.bet-form {
+  background: #2d2d2d;
+  padding: 2rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #3d3d3d;
+  background: #1a1a1a;
+  color: white;
+}
+
+.toggle-group {
+  display: flex;
+  gap: 1rem;
+}
+
+.toggle-group button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #3d3d3d;
+  color: white;
+  cursor: pointer;
+}
+
+.toggle-group button.active {
+  background: #4CAF50;
+}
+
+.bets-list {
+  background: #2d2d2d;
+  padding: 2rem;
+  border-radius: 12px;
+}
+
+.bet-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  margin: 1rem 0;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.resolve-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
