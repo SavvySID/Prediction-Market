@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { LineChart, Line, XAxis, YAxis, ResponsiveContainer, Area, AreaChart, Tooltip } from 'recharts';
+import { XAxis, YAxis, ResponsiveContainer, Area, AreaChart, Tooltip } from 'recharts';
 import './PriceChart.css';
 
 const PriceChart = ({ data, currentPrice, priceChange }) => {
   const [selectedTimeframe, setSelectedTimeframe] = useState('ALL');
-  const [hoveredPoint, setHoveredPoint] = useState(null);
 
   const timeframes = [
     { id: '1H', label: '1H' },

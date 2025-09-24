@@ -15,7 +15,7 @@ const DashboardPage = () => {
     positions: [
       {
         id: 1,
-        market: 'Will Bitcoin reach $100k by 2024?',
+        market: 'Will Bitcoin reach $100k by 2025?',
         outcome: 'Yes',
         shares: 150,
         avgPrice: '0.65',

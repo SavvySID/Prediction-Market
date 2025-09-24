@@ -17,22 +17,22 @@ const HomePage = () => {
   const mockMarkets = [
     {
       id: 1,
-      question: 'Will Bitcoin reach $100,000 by end of 2024?',
+      question: 'Will Bitcoin reach $100,000 by end of 2025?',
       category: 'crypto',
       volume: '$2,450,000',
       yesPrice: 0.65,
       noPrice: 0.35,
-      endDate: 'Dec 31, 2024',
+      endDate: 'Dec 31, 2025',
       participants: 1247
     },
     {
       id: 2,
-      question: 'Will the US have a recession in 2024?',
+      question: 'Will the US have a recession in 2025?',
       category: 'economy',
       volume: '$1,890,000',
       yesPrice: 0.42,
       noPrice: 0.58,
-      endDate: 'Dec 31, 2024',
+      endDate: 'Dec 31, 2025',
       participants: 892
     },
     {
@@ -52,17 +52,17 @@ const HomePage = () => {
       volume: '$3,100,000',
       yesPrice: 0.55,
       noPrice: 0.45,
-      endDate: 'Nov 5, 2024',
+      endDate: 'Nov 5, 2025',
       participants: 2103
     },
     {
       id: 5,
-      question: 'Will Messi win Ballon d\'Or 2024?',
+      question: 'Will Messi win Ballon d\'Or 2025?',
       category: 'sports',
       volume: '$890,000',
       yesPrice: 0.38,
       noPrice: 0.62,
-      endDate: 'Dec 31, 2024',
+      endDate: 'Dec 31, 2025',
       participants: 445
     },
     {

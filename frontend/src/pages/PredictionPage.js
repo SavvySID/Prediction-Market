@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { ethers } from 'ethers';
 import { wrapEthereumProvider, NETWORKS } from '@oasisprotocol/sapphire-paratime';
+import { connectWalletSafely, switchOrAddChain } from '../utils/wallet';
 import PriceChart from '../components/PriceChart';
 import './PredictionPage.css';
 
@@ -11,7 +12,7 @@ const PredictionPage = () => {
   const [selectedOutcome, setSelectedOutcome] = useState('yes');
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
-  const [walletAddress, setWalletAddress] = useState('');
+  // Removed unused walletAddress state to satisfy linter
   const [walletConnected, setWalletConnected] = useState(false);
   const [recentBets, setRecentBets] = useState([]);
 
@@ -19,9 +20,9 @@ const PredictionPage = () => {
     // Mock market data - replace with actual API call
     setMarket({
       id: id || '1',
-      question: 'Will Bitcoin reach $100,000 by end of 2024?',
-      description: 'This market will resolve to Yes if Bitcoin reaches $100,000 USD or higher at any point before December 31, 2024.',
-      endDate: 'Dec 31, 2024',
+      question: 'Will Bitcoin reach $100,000 by end of 2025?',
+      description: 'This market will resolve to Yes if Bitcoin reaches $100,000 USD or higher at any point before December 31, 2025.',
+      endDate: 'Dec 31, 2025',
       volume: '$2,450,000',
       liquidity: '$1,200,000',
       yesPrice: 0.65,
@@ -74,7 +75,6 @@ const PredictionPage = () => {
       try {
         const accounts = await window.ethereum.request({ method: 'eth_accounts' });
         if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
           setWalletConnected(true);
         }
       } catch (error) {
@@ -84,20 +84,12 @@ const PredictionPage = () => {
   };
 
   const connectWallet = async () => {
-    if (!window.ethereum) {
-      alert('MetaMask is not installed. Please install MetaMask to continue.');
-      return;
-    }
-
     try {
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      if (accounts.length > 0) {
-        setWalletAddress(accounts[0]);
-        setWalletConnected(true);
-      }
+      await connectWalletSafely();
+      setWalletConnected(true);
     } catch (error) {
       console.error('Error connecting wallet:', error);
-      alert('Failed to connect wallet. Please try again.');
+      alert(error.message || 'Failed to connect wallet.');
     }
   };
 
@@ -114,7 +106,8 @@ const PredictionPage = () => {
 
     setLoading(true);
     try {
-      // Connect to Oasis Sapphire
+      // Ensure Sapphire testnet and connect provider
+      await switchOrAddChain();
       const wrappedProvider = wrapEthereumProvider(window.ethereum, NETWORKS.testnet);
       const provider = new ethers.BrowserProvider(wrappedProvider);
       const signer = await provider.getSigner();

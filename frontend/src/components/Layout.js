@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { connectWalletSafely } from '../utils/wallet';
 import './Layout.css';
 
 const Layout = ({ children }) => {
@@ -7,15 +8,12 @@ const Layout = ({ children }) => {
   const location = useLocation();
 
   const connectWallet = async () => {
-    if (window.ethereum) {
-      try {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        if (accounts.length > 0) {
-          setWalletAddress(accounts[0]);
-        }
-      } catch (error) {
-        console.error('Error connecting wallet:', error);
-      }
+    try {
+      const address = await connectWalletSafely();
+      setWalletAddress(address);
+    } catch (error) {
+      console.error('Error connecting wallet:', error);
+      alert(error.message || 'Failed to connect wallet');
     }
   };
 
